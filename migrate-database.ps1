@@ -1,0 +1,1 @@
+dotnet run --project Sanbox.Main --migrate-database
