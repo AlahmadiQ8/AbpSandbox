@@ -1,8 +1,16 @@
 ﻿@page
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.Extensions.Localization
+@using Sanbox.Main.Contracts
 @using Sanbox.Main.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Button
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Card
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Grid
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Table
+@using Volo.Abp.AspNetCore.Mvc.UI.Bundling.TagHelpers
 @model Sanbox.Main.Pages.Books.Index
 @inject IStringLocalizer<MainResource> L
+@inject IAuthorizationService AuthorizationService
 
 @section scripts
 {
@@ -16,10 +24,13 @@
                 <abp-card-title>@L["Books"]</abp-card-title>
             </abp-column>
             <abp-column size-md="_6" class="text-end">
-                <abp-button id="NewBookButton"
-                            text="@L["NewBook"].Value"
-                            icon="plus"
-                            button-type="Primary"/>
+                @if (await AuthorizationService.IsGrantedAsync(BookStorePermissions.Books.Create))
+                {
+                    <abp-button id="NewBookButton"
+                                text="@L["NewBook"].Value"
+                                icon="plus"
+                                button-type="Primary"/>
+                }
             </abp-column>
         </abp-row>
     </abp-card-header>

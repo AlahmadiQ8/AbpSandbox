@@ -1,4 +1,5 @@
-﻿using Sanbox.Main.Localization;
+﻿using Sanbox.Main.Contracts;
+using Sanbox.Main.Localization;
 using Volo.Abp.Identity.Web.Navigation;
 using Volo.Abp.SettingManagement.Web.Navigation;
 using Volo.Abp.TenantManagement.Web.Navigation;
@@ -16,7 +17,7 @@ public class MainMenuContributor : IMenuContributor
         }
     }
 
-    private Task ConfigureMainMenuAsync(MenuConfigurationContext context)
+    private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
     {
         var administration = context.Menu.GetAdministration();
         var l = context.GetLocalizer<MainResource>();
@@ -31,21 +32,25 @@ public class MainMenuContributor : IMenuContributor
                 order: 0
             )
         );
-
-        context.Menu.AddItem(
-            new ApplicationMenuItem(
-                "BooksStore",
-                l["Menu:BookStore"],
-                icon: "fa fa-book"
-            ).AddItem(
-                new ApplicationMenuItem(
-                    "BooksStore.Books",
-                    l["Menu:Books"],
-                    url: "/Books"
-                )
-            )
+        
+        var bookStoreMenu = new ApplicationMenuItem(
+            "BooksStore",
+            l["Menu:BookStore"],
+            icon: "fa fa-book"
         );
-
+        
+        context.Menu.AddItem(bookStoreMenu);
+        
+        //CHECK the PERMISSION
+        if (await context.IsGrantedAsync(BookStorePermissions.Books.Default))
+        {
+            bookStoreMenu.AddItem(new ApplicationMenuItem(
+                "BooksStore.Books",
+                l["Menu:Books"],
+                url: "/Books"
+            ));
+        }
+        
         if (MainModule.IsMultiTenant)
         {
             administration.SetSubItemOrder(TenantManagementMenuNames.GroupName, 1);
@@ -54,7 +59,5 @@ public class MainMenuContributor : IMenuContributor
         {
             administration.TryRemoveMenuItem(TenantManagementMenuNames.GroupName);
         }
-
-        return Task.CompletedTask;
     }
 }

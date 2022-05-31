@@ -1,4 +1,5 @@
-﻿using Sanbox.Main.Entities;
+﻿using Sanbox.Main.Contracts;
+using Sanbox.Main.Entities;
 using Sanbox.Main.Services.Dtos;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -17,5 +18,10 @@ public class BookAppService :
 {
     public BookAppService(IRepository<Book, Guid> repository) : base(repository)
     {
+        GetPolicyName = BookStorePermissions.Books.Default;
+        GetListPolicyName = BookStorePermissions.Books.Default;
+        CreatePolicyName = BookStorePermissions.Books.Create;
+        UpdatePolicyName = BookStorePermissions.Books.Edit;
+        DeletePolicyName = BookStorePermissions.Books.Delete;
     }
 }

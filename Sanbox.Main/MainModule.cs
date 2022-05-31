@@ -1,4 +1,6 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.OpenApi.Models;
+using Sanbox.Main.Contracts;
 using Sanbox.Main.Data;
 using Sanbox.Main.Localization;
 using Sanbox.Main.Menus;
@@ -129,6 +131,13 @@ public class MainModule : AbpModule
         ConfigureLocalization();
         ConfigureAuthentication(context.Services, configuration);
         ConfigureEfCore(context);
+        
+        Configure<RazorPagesOptions>(options =>
+        {
+            options.Conventions.AuthorizePage("/Books/Index", BookStorePermissions.Books.Default);
+            options.Conventions.AuthorizePage("/Books/CreateModal", BookStorePermissions.Books.Create);
+            options.Conventions.AuthorizePage("/Books/EditModal", BookStorePermissions.Books.Edit);
+        } );
     }
 
     private void ConfigureMultiTenancy()
