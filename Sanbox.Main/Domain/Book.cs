@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Domain.Entities.Auditing;
 
-namespace Sanbox.Main.Entities;
+namespace Sanbox.Main.Domain;
 
 public class Book : AuditedAggregateRoot<Guid>
 {

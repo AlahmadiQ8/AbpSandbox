@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Sanbox.Main.Entities;
+using Sanbox.Main.Domain;
 
 namespace Sanbox.Main.Services.Dtos;
 

@@ -1,4 +1,4 @@
-﻿using Sanbox.Main.Entities;
+﻿using Sanbox.Main.Domain;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;

@@ -1,4 +1,4 @@
-﻿using Sanbox.Main.Entities;
+﻿using Sanbox.Main.Domain;
 using Volo.Abp.Application.Dtos;
 
 namespace Sanbox.Main.Services.Dtos;

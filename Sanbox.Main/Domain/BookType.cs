@@ -1,4 +1,4 @@
-﻿namespace Sanbox.Main.Entities;
+﻿namespace Sanbox.Main.Domain;
 
 public enum BookType
 {

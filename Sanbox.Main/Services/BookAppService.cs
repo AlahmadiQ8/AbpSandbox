@@ -1,5 +1,5 @@
 ﻿using Sanbox.Main.Contracts;
-using Sanbox.Main.Entities;
+using Sanbox.Main.Domain;
 using Sanbox.Main.Services.Dtos;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Sanbox.Main.Entities;
+using Sanbox.Main.Domain;
 using Sanbox.Main.Services.Dtos;
 
 namespace Sanbox.Main.Services;
