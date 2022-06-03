@@ -43,25 +43,25 @@ public class BookStoreDataSeederContributor : IDataSeedContributor, ITransientDe
                 },
                 autoSave: true
             );
-            
-            if (await _authorRepository.GetCountAsync() <= 0)
-            {
-                await _authorRepository.InsertAsync(
-                    await _authorManager.CreateAsync(
-                        "George Orwell",
-                        new DateTime(1903, 06, 25),
-                        "Orwell produced literary criticism and poetry, fiction and polemical journalism; and is best known for the allegorical novella Animal Farm (1945) and the dystopian novel Nineteen Eighty-Four (1949)."
-                    )
-                );
+        }
+        
+        if (await _authorRepository.GetCountAsync() <= 0)
+        {
+            await _authorRepository.InsertAsync(
+                await _authorManager.CreateAsync(
+                    "George Orwell",
+                    new DateTime(1903, 06, 25),
+                    "Orwell produced literary criticism and poetry, fiction and polemical journalism; and is best known for the allegorical novella Animal Farm (1945) and the dystopian novel Nineteen Eighty-Four (1949)."
+                )
+            );
 
-                await _authorRepository.InsertAsync(
-                    await _authorManager.CreateAsync(
-                        "Douglas Adams",
-                        new DateTime(1952, 03, 11),
-                        "Douglas Adams was an English author, screenwriter, essayist, humorist, satirist and dramatist. Adams was an advocate for environmentalism and conservation, a lover of fast cars, technological innovation and the Apple Macintosh, and a self-proclaimed 'radical atheist'."
-                    )
-                );
-            }
+            await _authorRepository.InsertAsync(
+                await _authorManager.CreateAsync(
+                    "Douglas Adams",
+                    new DateTime(1952, 03, 11),
+                    "Douglas Adams was an English author, screenwriter, essayist, humorist, satirist and dramatist. Adams was an advocate for environmentalism and conservation, a lover of fast cars, technological innovation and the Apple Macintosh, and a self-proclaimed 'radical atheist'."
+                )
+            );
         }
     }
 }
