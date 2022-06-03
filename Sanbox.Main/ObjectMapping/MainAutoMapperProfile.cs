@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Sanbox.Main.Domain;
+using Sanbox.Main.Services.Dtos;
 
 namespace Sanbox.Main.ObjectMapping;
 
@@ -6,6 +8,11 @@ public class MainAutoMapperProfile : Profile
 {
     public MainAutoMapperProfile()
     {
-        /* Create your AutoMapper object mappings here */
+        CreateMap<Book, BookDto>();
+        CreateMap<CreateUpdateBookDto, Book>();
+        CreateMap<BookDto, CreateUpdateBookDto>();
+        
+        CreateMap<Author, AuthorDto>();
+        CreateMap<Pages.Authors.CreateModal.CreateAuthorViewModel, CreateAuthorDto>();
     }
 }
