@@ -14,5 +14,7 @@ public class MainAutoMapperProfile : Profile
         
         CreateMap<Author, AuthorDto>();
         CreateMap<Pages.Authors.CreateModal.CreateAuthorViewModel, CreateAuthorDto>();
+        CreateMap<AuthorDto, Pages.Authors.EditModal.EditAuthorViewModel>();
+        CreateMap<Pages.Authors.EditModal.EditAuthorViewModel, UpdateAuthorDto>();
     }
 }
