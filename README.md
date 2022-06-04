@@ -19,5 +19,12 @@ Happy coding..!
 
 ```
 abp new Sanbox.Main -t app-nolayers -u mvc -d ef -dbms SQLite --no-random-port  --preview
+```
 
+## DB 
+
+### Dev Db
+
+```
+sqlcmd -S GAMING-LABTOP\SQLEXPRESS01 -E
 ```
